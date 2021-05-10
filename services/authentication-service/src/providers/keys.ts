@@ -31,23 +31,20 @@ export namespace SignUpBindings {
 }
 
 export namespace VerifyBindings {
-  export const GOOGLE_PRE_VERIFY_PROVIDER = BindingKey.create<GooglePreVerifyFn>(
-    'sf.google.preverify.provider',
-  );
-  export const GOOGLE_POST_VERIFY_PROVIDER = BindingKey.create<GooglePostVerifyFn>(
-    'sf.google.postverify.provider',
-  );
+  export const GOOGLE_PRE_VERIFY_PROVIDER =
+    BindingKey.create<GooglePreVerifyFn>('sf.google.preverify.provider');
+  export const GOOGLE_POST_VERIFY_PROVIDER =
+    BindingKey.create<GooglePostVerifyFn>('sf.google.postverify.provider');
 
-  export const KEYCLOAK_PRE_VERIFY_PROVIDER = BindingKey.create<KeyCloakPreVerifyFn>(
-    'sf.keycloak.preverify.provider',
-  );
-  export const KEYCLOAK_POST_VERIFY_PROVIDER = BindingKey.create<KeyCloakPostVerifyFn>(
-    'sf.keycloak.postverify.provider',
-  );
+  export const KEYCLOAK_PRE_VERIFY_PROVIDER =
+    BindingKey.create<KeyCloakPreVerifyFn>('sf.keycloak.preverify.provider');
+  export const KEYCLOAK_POST_VERIFY_PROVIDER =
+    BindingKey.create<KeyCloakPostVerifyFn>('sf.keycloak.postverify.provider');
 
-  export const BEARER_SIGNUP_VERIFY_PROVIDER = BindingKey.create<VerifyFunction.GenericAuthFn>(
-    `sf.bearer.signupverify.provider`,
-  );
+  export const BEARER_SIGNUP_VERIFY_PROVIDER =
+    BindingKey.create<VerifyFunction.GenericAuthFn>(
+      `sf.bearer.signupverify.provider`,
+    );
 }
 
 export namespace AuthCodeBindings {
