@@ -1,15 +1,10 @@
+const dotenv = require('dotenv');
 const dotenvExt = require('dotenv-extended');
 const fs = require('fs');
 const DBMigrate = require('db-migrate');
 const path = require('path');
 let isLocal = false;
-dotenvExt.load({
-  path: path.join(process.env.INIT_CWD, '.env'),
-  defaults: path.join(process.env.INIT_CWD, '.env.defaults'),
-  errorOnMissing: false,
-  includeProcessEnv: true,
-});
-const type = 'INMAIL';
+dotenv.config({path: path.join(process.env.INIT_CWD, '.env')});
 
 try {
   if (fs.existsSync('.infolder')) {
@@ -18,17 +13,16 @@ try {
 } catch (err) {
   console.info('\n');
 }
-if (isLocal) {
-  console.info(`Skipping migrations`);
-} else if (
-  !(process.env[`${type}_MIGRATION`] || process.env.SOURCELOOP_MIGRATION)
+
+if (
+  isLocal ||
+  process.env.INMAIL_MIGRATION_SKIP ||
+  process.env.SOURCELOOP_MIGRATION_SKIP
 ) {
-  console.warn(
-    `${type}_MIGRATION or SOURCELOOP_MIGRATION variables not found in the environment, skipping automigration.`,
-  );
+  console.info(`Skipping migrations`);
 } else {
   dotenvExt.load({
-    schema: path.join('.', 'migrations', '.env.schema'),
+    schema: path.join(`.`, `migrations`, `.env.schema`),
     path: path.join(process.env.INIT_CWD, '.env'),
     errorOnMissing: true,
     includeProcessEnv: true,
@@ -39,9 +33,10 @@ if (isLocal) {
 
 if (
   process.env.SOURCELOOP_MIGRATION_COPY ||
-  process.env[`${type}_MIGRATION_COPY`]
+  process.env.INMAIL_MIGRATION_COPY
 ) {
-  copyFolderRecursiveSync(path.join('.', 'migrations'), process.env.INIT_CWD);
+  copyFileSync(path.join('.', 'database.json'), process.env.INIT_CWD);
+  copyFolderRecursiveSync(path.join('.', '/migrations'), process.env.INIT_CWD);
 }
 
 function copyFileSync(source, target) {

@@ -4,19 +4,19 @@ import {
   param,
   patch,
   put,
-  requestBody,
+  requestBody
 } from '@loopback/openapi-v3';
 import {DataObject, Filter, repository} from '@loopback/repository';
 import {api, del, HttpErrors, post, ResponseObject} from '@loopback/rest';
 import {
   CONTENT_TYPE,
   IAuthUserWithPermissions,
-  STATUS_CODE,
+  STATUS_CODE
 } from '@sourceloop/core';
 import {
   authenticate,
   AuthenticationBindings,
-  STRATEGY,
+  STRATEGY
 } from 'loopback4-authentication';
 import {authorize} from 'loopback4-authorization';
 import {
@@ -26,19 +26,19 @@ import {
   IdResponse,
   Message,
   Meta,
-  StatusMarker,
+  StatusMarker
 } from '../models';
 import {
   AttachmentRepository,
   GroupRepository,
   MessageRepository,
-  ThreadRepository,
+  ThreadRepository
 } from '../repositories';
 import {
   PartyTypeMarker,
   PermissionsEnums,
   StorageMarker,
-  VisibilityMarker,
+  VisibilityMarker
 } from '../types';
 import {ComposeMailBody} from '../types/compose-mail-body.type';
 
@@ -110,7 +110,7 @@ export class OriginatorController {
     public attachmentRepository: AttachmentRepository,
     @inject(AuthenticationBindings.CURRENT_USER)
     public user: IAuthUserWithPermissions,
-  ) {}
+  ) { }
   getInMailIdentifierType(type: string | undefined): string {
     return String(type === 'user' ? this.user.id : this.user.email);
   }
@@ -344,19 +344,19 @@ export class OriginatorController {
     ]);
     const meta = composeMailBody.meta
       ? composeMailBody.meta.map(e => {
-          Object.assign(e, createdOnBy);
-          e.extId = extId;
-          e.extMetadata = extMetadata;
-          return new Meta(e);
-        })
+        Object.assign(e, createdOnBy);
+        e.extId = extId;
+        e.extMetadata = extMetadata;
+        return new Meta(e);
+      })
       : [];
     const attachments = composeMailBody.attachments
       ? composeMailBody.attachments.map(e => {
-          Object.assign(e, createdOnBy);
-          e.extId = extId;
-          e.extMetadata = extMetadata;
-          return new Attachment(e);
-        })
+        Object.assign(e, createdOnBy);
+        e.extId = extId;
+        e.extMetadata = extMetadata;
+        return new Attachment(e);
+      })
       : [];
     const messageUpdateData: DataObject<Message> = {
       extId,

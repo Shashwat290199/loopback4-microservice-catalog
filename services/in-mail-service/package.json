@@ -48,10 +48,6 @@
     "database.json",
     "!*/__tests__"
   ],
-  "peerDependencies": {
-    "db-migrate": "< 1.0.0 || ^1.0.0",
-    "db-migrate-pg": "^1.0.0"
-  },
   "dependencies": {
     "@loopback/boot": "^3.1.0",
     "@loopback/context": "^3.13.0",
@@ -62,17 +58,21 @@
     "@loopback/repository-tests": "^0.14.1",
     "@loopback/rest": "^9.0.0",
     "@sourceloop/core": "^1.0.0-alpha.27",
+    "db-migrate": "^0.11.12",
+    "db-migrate-pg": "^1.2.2",
     "dotenv": "^8.2.0",
     "dotenv-extended": "^2.9.0",
     "loopback4-authentication": "^4.1.0",
     "loopback4-authorization": "^3.2.0",
     "loopback4-soft-delete": "^3.1.0",
+    "swagger-ui-dist": "^3.48.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@loopback/build": "^6.2.6",
     "@loopback/eslint-config": "^10.0.2",
     "@loopback/testlab": "^3.2.8",
+    "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^10.17.44",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
@@ -82,8 +82,6 @@
     "eslint-plugin-eslint-plugin": "^2.3.0",
     "eslint-plugin-mocha": "^8.0.0",
     "source-map-support": "^0.5.19",
-    "db-migrate": "^0.11.12",
-    "db-migrate-pg": "^1.2.2",
     "typescript": "~4.0.5"
   },
   "publishConfig": {

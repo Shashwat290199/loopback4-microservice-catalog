@@ -4,24 +4,24 @@ import {
   Filter,
   FilterBuilder,
   repository,
-  WhereBuilder,
+  WhereBuilder
 } from '@loopback/repository';
 import {
   get,
   getModelSchemaRef,
   HttpErrors,
   param,
-  ResponseObject,
+  ResponseObject
 } from '@loopback/rest';
 import {
   CONTENT_TYPE,
   IAuthUserWithPermissions,
-  STATUS_CODE,
+  STATUS_CODE
 } from '@sourceloop/core';
 import {
   authenticate,
   AuthenticationBindings,
-  STRATEGY,
+  STRATEGY
 } from 'loopback4-authentication';
 import {authorize} from 'loopback4-authorization';
 import {Group, Message, Thread} from '../models';
@@ -31,7 +31,7 @@ import {
   MessageRepository,
   MetaRepository,
   ThreadRepository,
-  ThreadViewRepository,
+  ThreadViewRepository
 } from '../repositories';
 import {PermissionsEnums, VisibilityMarker} from '../types';
 
@@ -51,7 +51,7 @@ export class CollectorController {
     public attachmentRepository: AttachmentRepository,
     @inject(AuthenticationBindings.CURRENT_USER)
     public user: IAuthUserWithPermissions,
-  ) {}
+  ) { }
 
   getInMailIdentifierType(type: string | undefined): string {
     return String(type === 'user' ? this.user.id : this.user.email);
